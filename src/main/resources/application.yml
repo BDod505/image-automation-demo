@@ -1,3 +1,7 @@
 spring:
   application:
     name: automation
+  data:
+    mongodb:
+      uri: mongodb+srv://chdsrwuser:WyKO3j6iEceTrWl7@ct-chds-nprod-mongo-clu.6svcx.mongodb.net/dpcPoc
+      database: dpcPoc
