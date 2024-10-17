@@ -1,12 +1,10 @@
 package com.example.demo.image.automation.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Date;
 
 @Validated
 @Data
@@ -38,57 +36,31 @@ public class StyleDTO {
     @JsonProperty("thumbnailName")
     public String thumbnailName;
     /**
-    @JsonProperty("")
-    public boolean isS3ImagePath;
-    @JsonProperty("")
-    public String creatorName;
-    @JsonProperty("")
-    public String creatorEmail;
-    @JsonProperty("")
-    public int creatorId;
-    @JsonProperty("")
-    public Date updateDate;
-    @JsonProperty("")
-    public int favoriteSeq;
-    @JsonProperty("")
-    public boolean isCreator;
-    @JsonProperty("")
-    public int processing;
-    @JsonProperty("")
-    public int techpackProcessing;
-    @JsonProperty("")
-    public String colorCode;
-    @JsonProperty("")
-    public String workflowName;
-    @JsonProperty("")
-    public int workflowNum;
-    @JsonProperty("")
-    public int workflowSeq;
-    @JsonProperty("")
-    public Object customSort;
-    @JsonProperty("")
-    public Object externalStyleId;
-    @JsonProperty("")
-    public Object navigation;
-    @JsonProperty("")
-    public int companyId;
-    @JsonProperty("")
-    public String groupId;
-    @JsonProperty("")
-    public String turntableThumbnailPath;
-    @JsonProperty("")
-    public boolean hasAvatarThumbnail;
-    @JsonProperty("")
-    public int colorwayIndexNo;
-    @JsonProperty("")
-    public String colorwayName;
-    @JsonProperty("")
-    public String colorwayFilePath;
-    @JsonProperty("")
-    public String colorwayFileName;
-    @JsonProperty("")
-    public boolean use2dViewer;
-    @JsonProperty("")
-    public int currentColorwayIndex;
-    **/
+     @JsonProperty("") public boolean isS3ImagePath;
+     @JsonProperty("") public String creatorName;
+     @JsonProperty("") public String creatorEmail;
+     @JsonProperty("") public int creatorId;
+     @JsonProperty("") public Date updateDate;
+     @JsonProperty("") public int favoriteSeq;
+     @JsonProperty("") public boolean isCreator;
+     @JsonProperty("") public int processing;
+     @JsonProperty("") public int techpackProcessing;
+     @JsonProperty("") public String colorCode;
+     @JsonProperty("") public String workflowName;
+     @JsonProperty("") public int workflowNum;
+     @JsonProperty("") public int workflowSeq;
+     @JsonProperty("") public Object customSort;
+     @JsonProperty("") public Object externalStyleId;
+     @JsonProperty("") public Object navigation;
+     @JsonProperty("") public int companyId;
+     @JsonProperty("") public String groupId;
+     @JsonProperty("") public String turntableThumbnailPath;
+     @JsonProperty("") public boolean hasAvatarThumbnail;
+     @JsonProperty("") public int colorwayIndexNo;
+     @JsonProperty("") public String colorwayName;
+     @JsonProperty("") public String colorwayFilePath;
+     @JsonProperty("") public String colorwayFileName;
+     @JsonProperty("") public boolean use2dViewer;
+     @JsonProperty("") public int currentColorwayIndex;
+     **/
 }

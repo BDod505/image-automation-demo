@@ -20,7 +20,7 @@ public class Style {
     @JsonProperty("styleId")
     public String styleId;
     @JsonProperty("version")
-    public int version;
+    public String version;
     @JsonProperty("styleNumber")
     public String styleNumber;
     @JsonProperty("fileType")
@@ -37,4 +37,6 @@ public class Style {
     public String thumbnailPath;
     @JsonProperty("thumbnailName")
     public String thumbnailName;
+    @JsonProperty("workflowName")
+    public String workflowName;
 }

@@ -1,12 +1,11 @@
 package com.example.demo.image.automation.service.impl;
 
 import com.example.demo.image.automation.entity.Style;
-import com.example.demo.image.automation.models.StyleDTO;
 import com.example.demo.image.automation.repository.StyleRepository;
 import com.example.demo.image.automation.service.StyleListService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,18 +20,22 @@ public class StyleListServiceImpl implements StyleListService {
 
     @Autowired
     private StyleRepository styleRepository;
+    @Value("${clo-set.group-id}")
+    private String groupId;
+
+    @Value("${clo-set.host}")
+    private String host;
 
     @Override
-    public List<Style> fetchAndStoreStyles(String groupId) throws JsonProcessingException {
-        String url = "https://marksandspencer.clo-set.com/api/styles";
+    public List<Style> fetchAndStoreStyles() throws JsonProcessingException {
+        String url = host + "styles";
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("groupId",groupId);
+                .queryParam("groupId", groupId);
 
-        Style[] styles = restTemplate.getForObject(builder.toUriString(),Style[].class);
-        System.out.print(styles.length+"LYTS");
-        if(styles!=null){
-            styleRepository.saveAll(Arrays.asList(styles));
-        }
+        Style[] styles = restTemplate.getForObject(builder.toUriString(), Style[].class);
+        //if(styles!=null){
+        //    styleRepository.saveAll(Arrays.asList(styles));
+        //}
         return Arrays.asList(styles);
     }
 }

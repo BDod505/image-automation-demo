@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableMongoRepositories(basePackages = "com.example.demo.image.automation.repository")
 public class AutomationApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AutomationApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AutomationApplication.class, args);
+    }
 }

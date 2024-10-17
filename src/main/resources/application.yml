@@ -3,5 +3,10 @@ spring:
     name: automation
   data:
     mongodb:
-      uri: mongodb+srv://chdsrwuser:WyKO3j6iEceTrWl7@ct-chds-nprod-mongo-clu.6svcx.mongodb.net/dpcPoc
+      uri: mongodb+srv://${db-user}:${db-pass}@${db-host}/dpcPoc
       database: dpcPoc
+clo-set:
+  token: ${clo-set-token}
+  group-id: ${clo-set-group-id}
+  email: ${clo-set-email}
+  host: ${clo-set-host}
