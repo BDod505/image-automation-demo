@@ -1,23 +1,16 @@
 package com.example.demo.image.automation.event;
 
+import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
-
+@Getter
 public class WorkFlowStatusChangeEvent extends ApplicationEvent {
-    private final String styleId;
-    private final String version;
+    private final String downloadUrl;
+    private final String directoryPathString;
 
-    public WorkFlowStatusChangeEvent(Object source, String styleId, String version) {
+    public WorkFlowStatusChangeEvent(Object source, String downloadUrl, String directoryPathString) {
         super(source);
-        this.styleId = styleId;
-        this.version = version;
-    }
-
-    public String getStyleId() {
-        return styleId;
-    }
-
-    public String getVersion() {
-        return version;
+        this.downloadUrl = downloadUrl;
+        this.directoryPathString = directoryPathString;
     }
 }

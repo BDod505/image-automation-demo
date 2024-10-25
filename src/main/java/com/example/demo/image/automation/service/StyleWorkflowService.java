@@ -1,19 +1,14 @@
 package com.example.demo.image.automation.service;
 
 import com.example.demo.image.automation.entity.Style;
+import com.example.demo.image.automation.entity.StyleRender;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface StyleWorkflowService {
-    String getStyleRenderSeq(String styleId, String version);
 
-    String getRenderDownloadUrl(String styleId, String renderSeq);
-
-    void checkAndTriggerEvent(List<Style> styles);
-
-    File downloadZipFile(String downloadUrl) throws IOException;
-
-    List<File> extractImageFromZip(File zipFile) throws IOException;
+    void checkAndTriggerEvent(List<Style> styles) throws UnsupportedEncodingException;
 }

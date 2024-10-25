@@ -17,4 +17,6 @@ public class StyleRender {
     public String styleId;
     @JsonProperty("renderSeq")
     public String renderSeq;
+    @JsonProperty("renderStatus")
+    public String renderStatus;
 }
