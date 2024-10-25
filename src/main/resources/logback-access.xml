@@ -1,0 +1,32 @@
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+    <!-- These logstash encoders transform the output into JSON -->
+    <appender name="logstashAccessConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashAccessEncoder">
+            <pattern>%-4r [%t] %5p %c{1} - %m - X-Transaction-Id=%X{X-Transaction-Id
+                }%n</pattern>
+            <timeZone>UTC</timeZone>
+            <fieldNames>
+                <timestamp>time</timestamp>
+                <message>[ignore]</message>
+                <version>[ignore]</version>
+                <levelValue>[ignore]</levelValue>
+                <thread>[ignore]</thread>
+                <fieldsRequestHeaders>request_headers</fieldsRequestHeaders>
+                <fieldsResponseHeaders>response_headers</fieldsResponseHeaders>
+                <fieldsRequestedUrl>requested_url</fieldsRequestedUrl>
+                <fieldsStatusCode>status_code</fieldsStatusCode>
+                <fieldsMethod>[ignore]</fieldsMethod>
+                <fieldsRemoteHost>remote_host</fieldsRemoteHost>
+                <fieldsHostname>host</fieldsHostname>
+                <fieldsProtocol>[ignore]</fieldsProtocol>
+                <fieldsRequestedUri>[ignore]</fieldsRequestedUri>
+                <fieldsContentLength>[ignore]</fieldsContentLength>
+                <fieldsElapsedTime>duration</fieldsElapsedTime>
+            </fieldNames>
+            <custoffsetomFields>{"app": "image-automation-app"}</custoffsetomFields>
+        </encoder>
+    </appender>
+
+    <appender-ref ref="logstashAccessConsoleAppender"/>
+</configuration>
