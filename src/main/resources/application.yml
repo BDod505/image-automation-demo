@@ -12,3 +12,11 @@ clo-set:
   group-id: ${clo-set-group-id}
   email: ${clo-set-email}
   host: ${clo-set-host}
+
+sharepoint:
+  token: ${sharepoint-token}
+  folder-list-url: ${folder-list-url}
+  folder-create-url: https://graph.microsoft.com/v1.0/drives/{{DRIVE_ID}}/items/{{FOLDER_ID}}/children?select=createdDateTime,lastModifiedDateTime,name,webUrl
+  folder-base-url: ${folder-base-url}
+  drive-id: ${sharepoint-drive-id}
+  file-upload-url: https://graph.microsoft.com/v1.0/Drives/{{DRIVE_ID}}/items/{{FOLDER_ID}}:/{{FILE_NAME}}:/content?select=createdDateTime,lastModifiedDateTime,name,webUrl

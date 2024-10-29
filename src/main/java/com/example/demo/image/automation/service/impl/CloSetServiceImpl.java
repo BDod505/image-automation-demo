@@ -27,7 +27,7 @@ import java.util.Map;
 @Slf4j
 public class CloSetServiceImpl implements CloSetService {
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplateCloset;
 
     @Autowired
     private StyleRepository styleRepository;
@@ -46,11 +46,11 @@ public class CloSetServiceImpl implements CloSetService {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
                 .queryParam("groupId", groupId);
         log.info("Fetching all the styles for GroupId : ", groupId);
-        Style[] styles = restTemplate.getForObject(builder.toUriString(), Style[].class);
-        if (styles != null) {
-            log.info("Saving Styles to DB");
-            styleRepository.saveAll(Arrays.asList(styles));
-        }
+        Style[] styles = restTemplateCloset.getForObject(builder.toUriString(), Style[].class);
+        //if (styles != null) {
+        //    log.info("Saving Styles to DB");
+        //    styleRepository.saveAll(Arrays.asList(styles));
+        //}
         return Arrays.asList(styles);
     }
 
@@ -60,11 +60,11 @@ public class CloSetServiceImpl implements CloSetService {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
                 .pathSegment(styleId, "versions", version, "renders");
         log.info("getting render info");
-        StyleRender[] render = restTemplate.getForObject(builder.toUriString(), StyleRender[].class);
+        StyleRender[] render = restTemplateCloset.getForObject(builder.toUriString(), StyleRender[].class);
         //If we plan to store render info in DB
         if(render!=null){
             log.info("Saving render to Database");
-            renderRepository.saveAll(Arrays.asList(render));
+            //renderRepository.saveAll(Arrays.asList(render));
         }
         if (render.length == 0) {
             return null;
@@ -78,7 +78,7 @@ public class CloSetServiceImpl implements CloSetService {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
                 .pathSegment(styleId, "renders", renderSeq, "downloadurl");
         log.info("Getting the download URL");
-        String downloadUrl = restTemplate.getForObject(builder.toUriString(), String.class);
+        String downloadUrl = restTemplateCloset.getForObject(builder.toUriString(), String.class);
         return downloadUrl;
     }
 
@@ -88,7 +88,7 @@ public class CloSetServiceImpl implements CloSetService {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
                 .pathSegment(styleId, "versions", version).queryParam("groupId", groupId);
         log.info("Getting Style Details");
-        Style style = restTemplate.getForObject(builder.toUriString(), Style.class);
+        Style style = restTemplateCloset.getForObject(builder.toUriString(), Style.class);
         return style;
     }
 
@@ -98,7 +98,7 @@ public class CloSetServiceImpl implements CloSetService {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
                  .queryParam("groupId", groupId);
         log.info("Getting All Rooms Details");
-        Room[] rooms = restTemplate.getForObject(builder.toUriString(), Room[].class);
+        Room[] rooms = restTemplateCloset.getForObject(builder.toUriString(), Room[].class);
         for(Room room:rooms){
             if(room.roomId.equalsIgnoreCase(roomId)){
                 log.info("Found matched room : "+room.getRoomName());
@@ -120,7 +120,7 @@ public class CloSetServiceImpl implements CloSetService {
         payload.put("workflowSeq", workflowSeq);
         payload.put("styleIds", styleIds);
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(payload);
-        ResponseEntity<String> styleId = restTemplate.exchange(builder.toUriString(), HttpMethod.PUT, requestEntity, String.class);
+        ResponseEntity<String> styleId = restTemplateCloset.exchange(builder.toUriString(), HttpMethod.PUT, requestEntity, String.class);
         return styleId.getBody();
     }
 }

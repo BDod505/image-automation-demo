@@ -22,7 +22,7 @@ public class StyleWorkflowStatusMonitorTask {
     private StyleWorkflowService styleWorkflowService;
 
 
-    @Scheduled(fixedRate = 30000)
+    @Scheduled(fixedRate = 60000)
     public void monitorStyles() throws IOException {
         String traceID = UUID.randomUUID().toString();
         MDC.put("X-Transaction-Id", traceID);

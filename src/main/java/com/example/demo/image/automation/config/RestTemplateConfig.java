@@ -13,20 +13,49 @@ import java.util.List;
 public class RestTemplateConfig {
 
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate restTemplate(){
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(5000);
+        RestTemplate restTemplate = new RestTemplate(factory);
+        return restTemplate;
+    }
+
+    @Bean
+    public RestTemplate restTemplateCloset() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(5000);
         factory.setReadTimeout(5000);
 
         RestTemplate restTemplate = new RestTemplate(factory);
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
-        interceptors.add(authenticationInterceptor());
+        interceptors.add(cloSetAuthenticationInterceptor());
         restTemplate.setInterceptors(interceptors);
         return restTemplate;
     }
 
     @Bean
-    public AuthenticationInterceptor authenticationInterceptor() {
-        return new AuthenticationInterceptor();
+    public RestTemplate restTemplateSharepoint() {
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(5000);
+
+        RestTemplate restTemplate = new RestTemplate(factory);
+        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+        interceptors.add(sharepointAuthenticationInterceptor());
+        restTemplate.setInterceptors(interceptors);
+        return restTemplate;
     }
+
+    @Bean
+    public CloSetAuthenticationInterceptor cloSetAuthenticationInterceptor() {
+        return new CloSetAuthenticationInterceptor();
+    }
+
+    @Bean
+    public SharepointAuthenticationInterceptor sharepointAuthenticationInterceptor() {
+        return new SharepointAuthenticationInterceptor();
+    }
+
+
 }

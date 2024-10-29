@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @Slf4j
@@ -26,13 +25,18 @@ public class WorkflowStatusEventListener {
     FileUtil fileUtil;
 
     @EventListener
-    public void onWorkflowStatusChange(WorkFlowStatusChangeEvent event) throws IOException, URISyntaxException {
+    public void onWorkflowStatusChange(WorkFlowStatusChangeEvent event) throws IOException {
         log.info("Consuming Workflow Status Change Event.....");
-        boolean folderStatus = sharePointService.checkFolderPathExists(event.getDirectoryPathString());
-        //File downloadedZip = fileUtil.downloadZipFile(event.getDownloadUrl());
-        //List<File> images = fileUtil.extractImageFromZip(downloadedZip);
-        //sharePointService.uploadImagesToSharePoint(images, event.getStyleId());
-        //downloadedZip.delete();
-        //
+        fileUtil = new FileUtil();
+        String folderId = sharePointService.checkAndCreateFolder(event.getDirectoryPathString());
+        File downloadedZip = fileUtil.downloadZipFile(event.getDownloadUrl());
+        log.info(folderId+"TEST123");
+        log.info(downloadedZip.getName());
+        List<File> images = fileUtil.extractImageFromZip(downloadedZip);
+        sharePointService.uploadImagesToSharePoint(images, folderId);
+        downloadedZip.delete();
+        for(File image: images){
+            image.delete();
+        }
     }
 }

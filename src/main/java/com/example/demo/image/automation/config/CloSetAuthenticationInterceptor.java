@@ -11,7 +11,7 @@ import org.springframework.http.client.ClientHttpResponse;
 import java.io.IOException;
 
 @Configuration
-public class AuthenticationInterceptor implements ClientHttpRequestInterceptor {
+public class CloSetAuthenticationInterceptor implements ClientHttpRequestInterceptor {
     @Value("${clo-set.token}")
     private String token;
 

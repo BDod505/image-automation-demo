@@ -26,7 +26,7 @@ public class Room {
         for(Navigation navigation:spaceInfo.getNavigations()){
             builder.append(navigation.getName()).append("/");
         }
-        builder.append(this.roomName);
+        builder.deleteCharAt(builder.length()-1);
         this.dirURI = builder.toString();
     }
 }

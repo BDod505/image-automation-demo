@@ -33,6 +33,9 @@ public class StyleWorkflowServiceImpl implements StyleWorkflowService {
     @Value("${clo-set.host}")
     private String host;
 
+    @Value("${clo-set-group-name}")
+    private String groupName;
+
 
     @Override
     public void checkAndTriggerEvent(List<Style> styles) throws UnsupportedEncodingException {
@@ -55,6 +58,6 @@ public class StyleWorkflowServiceImpl implements StyleWorkflowService {
     private String generateDirPathURI(Style style) {
         String roomId = cloSetService.getStyleDetails(style.getStyleId(),style.getVersion()).getRoomId();
         Room room = cloSetService.getRoomDetails(roomId);
-        return room.getDirURI();
+        return "/"+groupName+room.getDirURI()+"/"+style.getName();
     }
 }
